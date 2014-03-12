@@ -13,9 +13,9 @@ namespace Intech.Business
         {
         }
 
-        public Result Process(String path)
+        public FileProcessorResult Process(String path)
         {
-            Result result = new Result();
+            FileProcessorResult result = new FileProcessorResult();
 
             if (Directory.Exists(path))
                 ProcessDirectory(path, result);
@@ -25,7 +25,7 @@ namespace Intech.Business
             return result;
         }
 
-        private void ProcessDirectory(string path, Result result, bool parentIsHidden = false)
+        private void ProcessDirectory(string path, FileProcessorResult result, bool parentIsHidden = false)
         {
             string[] subDirectories = Directory.GetDirectories(path);
             foreach (var subDirectory in subDirectories)
@@ -36,7 +36,7 @@ namespace Intech.Business
                 ProcessFile(file, result, parentIsHidden);
         }
 
-        private void ProcessSubDirectory(string name, Result result, bool parentIsHidden)
+        private void ProcessSubDirectory(string name, FileProcessorResult result, bool parentIsHidden)
         {
             if ((File.GetAttributes(name) & FileAttributes.Hidden) == FileAttributes.Hidden)
             {
@@ -48,7 +48,7 @@ namespace Intech.Business
             ProcessDirectory(name, result, parentIsHidden);
         }
 
-        private void ProcessFile(string name, Result result, bool parentIsHidden)
+        private void ProcessFile(string name, FileProcessorResult result, bool parentIsHidden)
         {
             if (parentIsHidden)
                 result.UnaccessibleFileCount++;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Intech.Business
 {
-    public class Result
+    public class FileProcessorResult
     {
         public int TotalFileCount { get; set; }
 
