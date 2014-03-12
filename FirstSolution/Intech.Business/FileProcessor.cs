@@ -26,12 +26,10 @@ namespace Intech.Business
 
         private void ProcessDirectory(string path, FileProcessorResult result, bool parentIsHidden = false)
         {
-            string[] subDirectories = Directory.GetDirectories(path);
-            foreach (var subDirectory in subDirectories)
+            foreach (var subDirectory in Directory.GetDirectories(path))
                 ProcessSubDirectory(subDirectory, result, parentIsHidden);
 
-            string[] files = Directory.GetFiles(path);
-            foreach (var file in files)
+            foreach (var file in Directory.GetFiles(path))
                 ProcessFile(file, result, parentIsHidden);
         }
 
