@@ -12,12 +12,13 @@ namespace Intech.App
         static void Main( string[] args )
         {
             FileProcessor p = new FileProcessor();
-            var r = p.Process( "C:\\Temp" );
+            var r = p.Process("C:\\AdwCleaner");
             Console.WriteLine( "TotalFileCount = {0}", r.TotalFileCount );
             Console.WriteLine( "TotalDirectoryCount = {0}", r.TotalDirectoryCount );
             Console.WriteLine( "HiddenFileCount = {0}", r.HiddenFileCount );
             Console.WriteLine( "HiddenDirectoryCount = {0}", r.HiddenDirectoryCount );
             Console.WriteLine( "There is {0} unaccessible file(s).", r.UnaccessibleFileCount );
+            Console.ReadKey();
         }
     }
 }
