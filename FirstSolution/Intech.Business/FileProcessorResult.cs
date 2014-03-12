@@ -7,6 +7,15 @@ namespace Intech.Business
 {
     public class FileProcessorResult
     {
+        readonly string _rootPath;
+        readonly DateTime _date;
+
+        internal FileProcessorResult(string rootPath)
+        {
+            _date = DateTime.Now;
+            _rootPath = rootPath;
+        }
+
         public int TotalFileCount { get; internal set; }
 
         public int TotalDirectoryCount { get; internal set; }

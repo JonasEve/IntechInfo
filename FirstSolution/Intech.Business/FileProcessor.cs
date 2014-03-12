@@ -15,7 +15,7 @@ namespace Intech.Business
 
         public FileProcessorResult Process(String path)
         {
-            FileProcessorResult result = new FileProcessorResult();
+            FileProcessorResult result = new FileProcessorResult(path);
 
             if (Directory.Exists(path))
                 ProcessDirectory(path, result);
