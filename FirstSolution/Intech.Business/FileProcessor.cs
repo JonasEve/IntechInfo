@@ -47,15 +47,11 @@ namespace Intech.Business
 
         private void ProcessFile(string name, FileProcessorResult result, bool parentIsHidden)
         {
-            if (parentIsHidden)
-                result.UnaccessibleFileCount++;
-
             if ((File.GetAttributes(name) & FileAttributes.Hidden) == FileAttributes.Hidden)
-            {
                 result.HiddenFileCount++;
-                if (!parentIsHidden)
-                    result.UnaccessibleFileCount++;
-            }
+
+            if(parentIsHidden || (File.GetAttributes(name) & FileAttributes.Hidden) == FileAttributes.Hidden)
+                result.UnaccessibleFileCount++;
 
             result.TotalFileCount++;
         }
