@@ -17,10 +17,10 @@ namespace Intech.Business
         {
             FileProcessorResult result = new FileProcessorResult(path);
 
+            DirectoryInfo d = new DirectoryInfo(path);
+
             if (Directory.Exists(path))
                 ProcessDirectory(path, result);
-            else
-                throw new Exception("Directory not exists");
 
             return result;
         }
