@@ -16,6 +16,16 @@ namespace Intech.Business
             _rootPath = rootPath;
         }
 
+        public string RootPath
+        {
+            get { return _rootPath; }
+        }
+
+        public DateTime CreationDate
+        {
+            get { return _date; }
+        }
+
         public int TotalFileCount { get; internal set; }
 
         public int TotalDirectoryCount { get; internal set; }
