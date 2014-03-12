@@ -9,36 +9,34 @@ namespace Intech.Business
 {
     public class FileProcessor
     {
-        Result result;
-
         public FileProcessor()
         {
         }
 
         public Result Process(String path)
         {
-            result = new Result();
+            Result result = new Result();
 
             if (Directory.Exists(path))
-                ProcessDirectory(path);
+                ProcessDirectory(path, result);
             else
                 throw new Exception("Directory not exists");
 
             return result;
         }
 
-        private void ProcessDirectory(string path, bool parentIsHidden = false)
+        private void ProcessDirectory(string path, Result result, bool parentIsHidden = false)
         {
             string[] subDirectories = Directory.GetDirectories(path);
             foreach (var subDirectory in subDirectories)
-                ProcessSubDirectory(subDirectory, parentIsHidden);
+                ProcessSubDirectory(subDirectory, result, parentIsHidden);
 
             string[] files = Directory.GetFiles(path);
             foreach (var file in files)
-                ProcessFile(file, parentIsHidden);
+                ProcessFile(file, result, parentIsHidden);
         }
 
-        private void ProcessSubDirectory(string name, bool parentIsHidden)
+        private void ProcessSubDirectory(string name, Result result, bool parentIsHidden)
         {
             if ((File.GetAttributes(name) & FileAttributes.Hidden) == FileAttributes.Hidden)
             {
@@ -47,10 +45,10 @@ namespace Intech.Business
             }
 
             result.TotalDirectoryCount++;
-            ProcessDirectory(name, parentIsHidden);
+            ProcessDirectory(name, result, parentIsHidden);
         }
 
-        private void ProcessFile(string name, bool parentIsHidden)
+        private void ProcessFile(string name, Result result, bool parentIsHidden)
         {
             if (parentIsHidden)
                 result.UnaccessibleFileCount++;
