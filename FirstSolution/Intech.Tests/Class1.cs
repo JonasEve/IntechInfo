@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Intech.Business.Tests
+namespace Intech.Tests
 {
     public class Class1
     {
