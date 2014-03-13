@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="FirstTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Intech.Business\Intech.Business.csproj">
