@@ -26,6 +26,11 @@ namespace Intech.Business
             get { return _date; }
         }
 
+        public bool RootPathExists
+        {
+            get { return TotalDirectoryCount != 0; }
+        }
+
         public int TotalFileCount { get; internal set; }
 
         public int TotalDirectoryCount { get; internal set; }

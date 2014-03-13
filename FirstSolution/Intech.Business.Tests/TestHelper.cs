@@ -10,15 +10,28 @@ namespace Intech.Business.Tests
 {
     class TestHelper
     {
+        static DirectoryInfo _testSupportFolder;
+        static readonly DirectoryInfo _solutionFolder;
+
+        static TestHelper()
+        {
+            _solutionFolder = new DirectoryInfo(Path.GetDirectoryName(
+                                            Path.GetDirectoryName(
+                                                Path.GetDirectoryName(
+                                                    Path.GetDirectoryName(
+                                                        new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath)))));
+        }
+
         static public DirectoryInfo TestSupportFolder
         {
             get
             {
-                return new DirectoryInfo(
-                                Path.Combine(
-                                    SolutionFolder.FullName,
-                                    "Intech.Business.Tests",
-                                    "TestSupport"));
+                return _testSupportFolder ?? 
+                            ( _testSupportFolder = new DirectoryInfo(
+                                                            Path.Combine(
+                                                                SolutionFolder.FullName,
+                                                                "Intech.Business.Tests",
+                                                                "TestSupport")));
             }
         }
 
@@ -26,11 +39,7 @@ namespace Intech.Business.Tests
         {
             get
             {
-                return new DirectoryInfo(Path.GetDirectoryName(
-                                            Path.GetDirectoryName(
-                                                Path.GetDirectoryName(
-                                                    Path.GetDirectoryName(
-                                                        new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath)))));
+                return _solutionFolder;
             }
         }
     }

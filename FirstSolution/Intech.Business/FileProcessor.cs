@@ -25,6 +25,8 @@ namespace Intech.Business
 
         private void ProcessDirectory(string path, FileProcessorResult result, bool parentIsHidden = false)
         {
+            result.TotalDirectoryCount++;
+
             foreach (var subDirectory in Directory.GetDirectories(path))
                 ProcessSubDirectory(subDirectory, result, parentIsHidden);
 
@@ -40,7 +42,6 @@ namespace Intech.Business
                 parentIsHidden = true;
             }
 
-            result.TotalDirectoryCount++;
             ProcessDirectory(name, result, parentIsHidden);
         }
 
