@@ -42,5 +42,10 @@ namespace Intech.Business.Tests
                 return _solutionFolder;
             }
         }
+
+        static public string TestSupportPath
+        {
+            get { return TestSupportFolder.FullName; }
+        }
     }
 }
