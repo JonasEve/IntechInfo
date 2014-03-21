@@ -73,12 +73,16 @@ namespace Intech.Business
 
             public T Current
             {
-                get { return _list[_currentPosition]; }
+                get 
+                {
+                    if (_currentPosition < 0) throw new InvalidOperationException("MoveNext() must be called first");
+                    if (_currentPosition >= _list._count) throw new InvalidOperationException("Current must not be used if MoveNext() returned false");
+                    return _list._array[_currentPosition]; 
+                }
             }
 
             public void Dispose()
             {
-
             }
 
             object IEnumerator.Current
@@ -88,17 +92,12 @@ namespace Intech.Business
 
             public bool MoveNext()
             {
-                _currentPosition++;
-
-                if (_currentPosition >= _list._count)
-                    return false;
-
-                return true;
+                return (++_currentPosition >= _list._count);
             }
 
             public void Reset()
             {
-                _currentPosition = -1;
+                throw new NotSupportedException();
             }
         }
 
