@@ -65,9 +65,34 @@ namespace Intech.Business.Tests
         }
 
         [Test]
-        public void BigTest()
+        public void InserAtTest()
         {
+            var l = new MyList<int>();
 
+            l.Add(1);
+            l.Add(2);
+            l.Add(3);
+            l.Add(4);
+
+            l.InsertAt(1, 50);
+
+            Assert.That(l.Count == 5);
+            Assert.That(l[1] == 50);
+        }
+
+        [Test]
+        public void IndexOfTest()
+        {
+            var l = new MyList<int>();
+
+            l.Add(1);
+            l.Add(2);
+            l.Add(3);
+            l.Add(4);
+
+            var i = l.IndexOf(1);
+
+            Assert.That(i == 2);
         }
     }
 }
