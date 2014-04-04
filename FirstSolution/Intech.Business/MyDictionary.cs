@@ -8,6 +8,7 @@ namespace Intech.Business
 {
     public class MyDictionary<TKey, TValue>
     {
+        IEqualityComparer<TKey> _strategy;
         int _count;
         Bucket[] _buckets;
         int _fillFactor = 5;
@@ -30,6 +31,14 @@ namespace Intech.Business
         public MyDictionary()
         {
             _buckets = new Bucket[11];
+            _strategy = EqualityComparer<TKey>.Default;
+        }
+        
+        public MyDictionary(IEqualityComparer<TKey> strat)
+        {
+            if (strat == null) throw new ArgumentException("null strat");
+            _strategy = strat;
+            _buckets = new Bucket[11];
         }
 
         public int Count
@@ -43,13 +52,13 @@ namespace Intech.Business
 
         public bool Remove (TKey key)
         {
-            int h = key.GetHashCode();
+            int h = _strategy.GetHashCode(key);
             int slot = Math.Abs(h % _buckets.Length);
             Bucket b = _buckets[slot];
             Bucket prev = null;
             while(b != null)
             {
-                if (EqualityComparer<TKey>.Default.Equals(b.Key, key))
+                if (_strategy.Equals(b.Key, key))
                 {
                     _count--;
                     if (prev == null)
@@ -68,11 +77,12 @@ namespace Intech.Business
 
         private void AddOrReplace(TKey key, TValue value, bool add)
         {
-            int h = key.GetHashCode();
+            int h = _strategy.GetHashCode(key);
             int slot = Math.Abs(h % _buckets.Length);
             Bucket b = _buckets[slot];
             if (b == null)
             {
+                //AddNewBucket(slot, key, value);
                 _buckets[slot] = new Bucket(key, value, null);
                 _count++;
             }
@@ -80,7 +90,7 @@ namespace Intech.Business
             {
                 do
                 {
-                    if (EqualityComparer<TKey>.Default.Equals(b.Key, key))
+                    if (_strategy.Equals(key, b.Key))
                     {
                         if (add) throw new InvalidOperationException();
                         b.Value = value;
@@ -106,7 +116,7 @@ namespace Intech.Business
                 Bucket b = _buckets[i];
                 while(b != null)
                 {
-                    int h = b.Key.GetHashCode();
+                    int h = _strategy.GetHashCode(b.Key);
                     int slot = Math.Abs(h % newBuckets.Length);
                     var oldNext = b.Next; 
                     b.Next = newBuckets[slot];
@@ -119,13 +129,13 @@ namespace Intech.Business
 
         public bool TryGetValue(TKey key, out TValue value)
         {
-            int h = key.GetHashCode();
+            int h = _strategy.GetHashCode(key);
             int slot = Math.Abs(h % _buckets.Length);
             Bucket b = _buckets[slot];
 
             while(b != null)
             {
-                if (EqualityComparer<TKey>.Default.Equals(b.Key, key))
+                if (_strategy.Equals(b.Key, key))
                 {
                     value = b.Value;
                     return true;
