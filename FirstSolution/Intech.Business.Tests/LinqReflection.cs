@@ -11,9 +11,19 @@ namespace Intech.Business.Tests
 {
     public static class MyLinqExtension
     {
-        public static void ForEach<T>(this IEnumerable<T> @this, Action<T> action)
+        public static void ForEach<TKey, TValue>(this IEnumerable<IGrouping<TKey, TValue>> @this, Action<TKey> open, Action<TValue> read, Action close)
         {
             foreach(var element in @this)
+            {
+                open(element.Key);
+                element.ForEach(read);
+                close();
+            }
+        }
+
+        public static void ForEach<T>(this IEnumerable<T> @this, Action<T> action)
+        {
+            foreach (var element in @this)
             {
                 action(element);
             }
@@ -29,11 +39,12 @@ namespace Intech.Business.Tests
             Assembly a = Assembly.GetExecutingAssembly();
             var methodInfo = a.GetTypes().SelectMany(t => t.GetMethods());
 
-            int paramCount = 1;
+            methodInfo.GroupBy(m => m.GetParameters().Length).OrderBy(m => m.Key)
+                .ForEach(Console.WriteLine
+                , Console.WriteLine
+                , Console.WriteLine);
 
-            methodInfo.Where(m => m.GetParameters().Length == paramCount).Select(m => m.Name).ForEach(Console.WriteLine);
         }
-
         [Test]
         public void SystemTextIAmUsing()
         {
