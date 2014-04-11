@@ -123,7 +123,7 @@ namespace Intech.Business
 
             public bool MoveNext()
             {
-                return (++_currentPosition >= _list._count);
+                return (++_currentPosition <= _list._count);
             }
 
             public void Reset()

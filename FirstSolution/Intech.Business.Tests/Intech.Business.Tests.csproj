@@ -45,9 +45,11 @@
     <Compile Include="ExecptionTests.cs" />
     <Compile Include="FileProcessorTest.cs" />
     <Compile Include="FirstTests.cs" />
+    <Compile Include="MiniLinq.cs" />
     <Compile Include="MyDictionaryTests.cs" />
     <Compile Include="MyListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartingWithLinq.cs" />
     <Compile Include="TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
