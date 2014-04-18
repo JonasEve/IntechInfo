@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EncodingTests.cs" />
     <Compile Include="ExecptionTests.cs" />
     <Compile Include="FileProcessorTest.cs" />
     <Compile Include="FirstTests.cs">
@@ -76,6 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TestSupport\EmptyFolder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestSupport\testCra.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

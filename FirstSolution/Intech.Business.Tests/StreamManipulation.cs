@@ -49,6 +49,50 @@ namespace Intech.Business.Tests
 
         }
 
+        [Test]
+        public void CraStreamTest()
+        {
+            string path = Path.Combine(TestHelper.TestSupportPath, "testCra.txt");
+            string pathcra = path + " - cra";
+            string pathdecra = path + " - decra";
+
+            using (var fstream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+            using (var fout = new FileStream(pathcra, FileMode.Create, FileAccess.Write, FileShare.None))
+            using (var fcra = new MyCrabouilleStream(fout, "totot", Crabouillage.Crabouille))
+            {
+                Transfert(fstream, fcra);
+            }
+
+            using (var fstream = new FileStream(pathcra, FileMode.Open, FileAccess.Read, FileShare.None))
+            using (var fout = new FileStream(pathdecra, FileMode.Create, FileAccess.Write, FileShare.None))
+            using (var fcra = new MyCrabouilleStream(fstream, "totot", Crabouillage.Decrabouille))
+            {
+                Transfert(fcra, fout);
+            }
+        }
+
+        [Test]
+        public void CraAndZipStreamTest()
+        {
+            string path = Path.Combine(TestHelper.TestSupportPath, "testCra.txt");
+            string pathcra = path + " - craZip";
+            string pathdecra = path + " - decraDEZIP";
+
+            using (var fstream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+            using (var fout = new FileStream(pathcra, FileMode.Create, FileAccess.Write, FileShare.None))
+            using (var fcra = new MyCrabouilleStream(fout, "totot", Crabouillage.Crabouille))
+            {
+                Transfert(fstream, fcra);
+            }
+
+            using (var fstream = new FileStream(pathcra, FileMode.Open, FileAccess.Read, FileShare.None))
+            using (var fout = new FileStream(pathdecra, FileMode.Create, FileAccess.Write, FileShare.None))
+            using (var fcra = new MyCrabouilleStream(fstream, "totot", Crabouillage.Decrabouille))
+            {
+                Transfert(fcra, fout);
+            }
+        }
+
         private void Transfert(Stream fstream, Stream fout)
         {
             var buff = new byte[4000];

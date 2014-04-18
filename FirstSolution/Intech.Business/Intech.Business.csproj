@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CraStream.cs" />
+    <Compile Include="MyCrabouilleStream.cs" />
     <Compile Include="FileProcessor.cs" />
     <Compile Include="MyDictionary.cs">
       <SubType>Code</SubType>
@@ -46,6 +48,7 @@
     <Compile Include="MyList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileProcessorResult.cs" />
+    <Compile Include="TeeStream.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
