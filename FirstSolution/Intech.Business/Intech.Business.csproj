@@ -40,8 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CraStream.cs" />
-    <Compile Include="MyCrabouilleStream.cs" />
     <Compile Include="FileProcessor.cs" />
+    <Compile Include="MyCrabouilleStream.cs" />
     <Compile Include="MyDictionary.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -52,13 +52,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MiniLinq.cs" />
-    <Compile Include="MultiThreading.cs" />
+    <Compile Include="MultiThreading.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MyDictionaryTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MyListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpaceTest.cs" />
+    <Compile Include="SpaceTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="StartingWithLinq.cs">
       <SubType>Code</SubType>
     </Compile>
