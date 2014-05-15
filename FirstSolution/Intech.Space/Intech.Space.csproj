@@ -42,6 +42,12 @@
     <Compile Include="Universe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Intech.Business\Intech.Business.csproj">
+      <Project>{05ae8486-1969-4e3a-8f59-769f4b6349c5}</Project>
+      <Name>Intech.Business</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

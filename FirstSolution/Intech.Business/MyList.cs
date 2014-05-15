@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Intech.Business
 {
-    public class MyList<T> : IEnumerable<T>
+    public class MyList<T> : IEnumerable<T>, IReadOnlyList<T>
     {
         T[] _array;
         int _count;
